@@ -9,7 +9,7 @@ ow.init('127.0.0.1:4304')
 # Step/store. Update every 10 sec
 
 
-def render_graph(fname):
+def render(fname):
     print "Rendering new image."
     info = rrdtool.info(fname)
     for i in info:
@@ -33,11 +33,12 @@ def render_graph(fname):
               'VDEF:tempmin=temp,MINIMUM' ,
               'AREA:temp#01DF01:Temperature' ,
               'LINE:tempmax#FF0000:Max' ,
+              r'GPRINT:tempmin:Min\: %6.1lf C' ,
               r'GPRINT:tempmax:Max\: %6.1lf C' ,
               r'GPRINT:tempavg:Avg\: %6.1lf C' ,
-              r'GPRINT:tempmin:Min\: %6.1lf C' ,
+	      r'GPRINT:temp:LAST:Cur\: %5.2lf C' ,
               )
 
 
 if __name__== "__main__":
-    render_graph(sys.argv[1])
+    render(sys.argv[1])
