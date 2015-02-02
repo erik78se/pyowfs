@@ -10,7 +10,7 @@ ow.init('127.0.0.1:4304')
 
 
 
-# Step/store. Update every 10 sec
+# Step/store. Update every N sec
 
 def main(rrdfile=None):
     
